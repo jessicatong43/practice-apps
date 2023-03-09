@@ -30,6 +30,7 @@ body {
 #app {
   max-width: 800px;
   min-height: 800px;
+  background-color: rgb(87, 87, 87);
   border: solid 1px rgb(184, 184, 184);
   padding: 30px;
 }
@@ -68,6 +69,7 @@ main {
 
 h1 {
   margin-bottom: 30px;
+  color: aliceblue;
 }
 
 #addWord {
@@ -83,18 +85,19 @@ h1 {
 #wordlist {
   clear: both;
   min-height: 500px;
+  background-color: rgb(149, 185, 220);
   border: solid 1px rgb(184, 184, 184);
+  border-radius: 30px;
 }
 
 .wordEntry {
-  margin: 20px;
+  background-color: rgb(222, 240, 250);
+  border-radius: 20px;
+  margin: 15px 20px;
+  padding: 15px;
 }
 
 .editDeleteBtns {
   float: right;
   margin: 0 10px;
 }
-
-/* .wordEntry > p {
-  clear: right;
-} */
