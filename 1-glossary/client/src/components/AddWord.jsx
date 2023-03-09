@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import Axios from "axios";
 
-var AddWord = () => {
+var AddWord = ({allWords, setAllWords, setWordList}) => {
 
 const [wordToAdd, setWordToAdd] = useState('');
-// const [defToAdd, setDefToAdd] = useState('');
 
   var handleChange = (e) => {
     e.preventDefault();
@@ -15,8 +14,17 @@ const [wordToAdd, setWordToAdd] = useState('');
   var handleClick = (e) => {
     e.preventDefault();
     var newDef = prompt("Add a definition:", "Type definition here...");
-    // setDefToAdd(newDef);
     console.log('newDef: ', newDef);
+
+    var newWordObj = {word: wordToAdd, definition: newDef};
+    console.log('newWordObj: ', newWordObj);
+
+    var allWordsCopy = allWords.slice();
+    allWordsCopy.push(newWordObj);
+    console.log('allWordsCopy: ', allWordsCopy);
+
+    setAllWords(allWordsCopy);
+    setWordList(allWordsCopy);
 
     // Axios.post('/glossary', {
     //   wordToAdd: wordToAdd,
@@ -28,11 +36,13 @@ const [wordToAdd, setWordToAdd] = useState('');
     // .catch((err) => {
     //   console.log('POST ERROR: ', err);
     // })
+
+    document.getElementById("addInput").value = '';
   }
 
   return (
     <form id="addWord">
-      <input type="text" onChange={handleChange} />
+      <input id="addInput" type="text" onChange={handleChange} />
       <button id="addButton" onClick={handleClick}><i className="fa-solid fa-book" /> Add word</button>
     </form>
   )
