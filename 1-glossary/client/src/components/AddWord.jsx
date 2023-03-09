@@ -7,37 +7,33 @@ const [wordToAdd, setWordToAdd] = useState('');
 
   var handleChange = (e) => {
     e.preventDefault();
-    console.log('Add word input: ', e.target.value);
     setWordToAdd(e.target.value);
   }
 
   var handleClick = (e) => {
     e.preventDefault();
+
+    if (wordToAdd === '') {
+      return;
+    }
+
     var newDef = prompt("Add a definition:", "Type definition here...");
-    console.log('newDef: ', newDef);
-
     var newWordObj = {word: wordToAdd, definition: newDef};
-    console.log('newWordObj: ', newWordObj);
-
     var allWordsCopy = allWords.slice();
     allWordsCopy.push(newWordObj);
-    console.log('allWordsCopy: ', allWordsCopy);
+
+    Axios.post('/glossary', newWordObj)
+    .then((res) => {
+      console.log('POST SUCCESS: ', res);
+    })
+    .catch((err) => {
+      console.log('POST ERROR: ', err);
+    })
 
     setAllWords(allWordsCopy);
     setWordList(allWordsCopy);
-
-    // Axios.post('/glossary', {
-    //   wordToAdd: wordToAdd,
-    //   defToAdd: newDef
-    // })
-    // .then((res) => {
-    //   console.log('POST SUCCESS: ', res);
-    // })
-    // .catch((err) => {
-    //   console.log('POST ERROR: ', err);
-    // })
-
     document.getElementById("addInput").value = '';
+
   }
 
   return (

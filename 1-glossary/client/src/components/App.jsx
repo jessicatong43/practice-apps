@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import WordList from "./WordList.jsx";
 import AddWord from "./AddWord.jsx";
 import Search from "./Search.jsx";
+import Axios from "axios";
 
 var initWords = [
   {word: 'react', definition: 'respond or behave in a particular way in response to something'},
@@ -15,6 +16,19 @@ var App = () => {
 
   const [allWords, setAllWords] = useState(initWords);
   const [wordList, setWordList] = useState(initWords);
+
+  // TODO: implement axios.get to access db words on load/refresh
+  Axios.get('/glossary')
+  .then((allWordsData) => {
+    setAllWords(allWordsData);
+    setWordList(allWordsData);
+  })
+  .catch((err) => {
+    console.log('FINAL ERROR: ', err);
+  })
+  .finally(() => {
+    res.status.send();
+  });
 
   return (
     <div id="app">

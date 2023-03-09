@@ -8,18 +8,20 @@ const [query, setQuery] = useState('');
   var handleChange = (e) => {
     e.preventDefault();
     setQuery(e.target.value.toLowerCase());
-    console.log('query: ', query);
   }
 
   var handleClick = (e) => {
     e.preventDefault();
+
     if (query === '') {
       setWordList(allWords);
     }
+
     var filtered = allWords.filter(word => (word.word.toLowerCase()).includes(query));
     setWordList(filtered);
     setQuery('');
     document.getElementById("searchbar").value = '';
+
   }
 
   return (
