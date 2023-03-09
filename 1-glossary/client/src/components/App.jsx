@@ -1,22 +1,25 @@
 import React from "react";
-import WordList from "./WordList.jsx"
+import WordList from "./WordList.jsx";
+import AddWord from "./AddWord.jsx";
 
 var App = () => {
+
   return (
-    <div id='app'>
+    <div id="app">
       <h1>myGlossary</h1>
-      <button id='addButton'><i class="fa-solid fa-book"></i> Add a word</button>
-      <form id='searchbar'>
-        <input type='search' />
+      <AddWord />
+      <form id="searchbar">
+        <input type="search" />
         <button>
-          <i class="fa-solid fa-magnifying-glass"></i>
+          <i className="fa-solid fa-magnifying-glass" />
         </button>
       </form>
-      <div id='wordlist'>
+      <div id="wordlist">
         <WordList />
       </div>
     </div>
   );
+
 }
 
 export default App;
