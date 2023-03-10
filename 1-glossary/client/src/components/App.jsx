@@ -21,8 +21,8 @@ var App = () => {
       Axios.get('/glossary')
       .then((resData) => {
         console.log('GET SUCCESS: ', resData);
-        setAllWords(resData);
-        setWordList(resData);
+        setAllWords(resData.data);
+        setWordList(resData.data);
       })
       .catch((err) => {
         console.log('FINAL ERROR: ', err);

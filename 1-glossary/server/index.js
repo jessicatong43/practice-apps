@@ -12,12 +12,18 @@ app.use(express.json());
 // Other routes here....
 app.post('/glossary', (req, res) => {
   console.log('POST REQBODY: ', req.body); // already formatted
-  // pass to db's model for writing to db
+  model.createOne(req.body)
+  .then((data) => {
+    console.log('POST-CREATE: ', data);
+    res.status(201).send();
+  })
+  .catch((err) => {
+    console.log('SERVER POST ERROR: ', err);
+  })
 })
 
 app.get('/glossary', (req, res) => {
-  console.log('GET REQ: ', req);
-  // pass to db's model for querying db
+  console.log('IN EXPRESS GET');
   model.getAll()
   .then ((allWordsData) => {
     console.log('GET RES: ', allWordsData);
@@ -31,7 +37,7 @@ app.get('/glossary', (req, res) => {
     res.json(formatted);
   })
   .catch((err) => {
-    console.log('GET ERROR: ', err);
+    console.log('SERVER GET ERROR: ', err);
   })
 });
 

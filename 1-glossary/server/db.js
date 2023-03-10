@@ -16,12 +16,12 @@ const wordSchema = mongoose.Schema({
 const Word = mongoose.model('Word', wordSchema);
 
 let createOne = (wordObj) => {
-  // TODO: implement save to write to db
+  console.log('CREATEONE: ', wordObj);
+  return Word.create(wordObj);
 }
 
 let getAll = () => {
   console.log('INSIDE GETALL');
-  // TODO: implement getAll to query to db
   return Word.find({});
 }
 

@@ -17,22 +17,27 @@ const [wordToAdd, setWordToAdd] = useState('');
       return;
     }
 
-    var newDef = prompt("Add a definition:", "Type definition here...");
+    var newDef = prompt("Add a definition:");
     var newWordObj = {word: wordToAdd, definition: newDef};
-    var allWordsCopy = allWords.slice();
+    console.log('allWords: ', allWords);
+    var allWordsCopy = [...allWords];
     allWordsCopy.push(newWordObj);
 
     Axios.post('/glossary', newWordObj)
-    .then((res) => {
-      console.log('POST SUCCESS: ', res);
+    .then((postRes) => {
+      console.log('POST SUCCESS: ', postRes);
+      return Axios.get('/glossary');
     })
+    .then((wordData) => {
+      console.log('POST-GET SUCCESS: ', wordData);
+      setAllWords(wordData.data);
+      setWordList(wordData.data);
+      setWordToAdd('');
+      document.getElementById("addInput").value = '';
+      })
     .catch((err) => {
       console.log('POST ERROR: ', err);
     })
-
-    setAllWords(allWordsCopy);
-    setWordList(allWordsCopy);
-    document.getElementById("addInput").value = '';
 
   }
 

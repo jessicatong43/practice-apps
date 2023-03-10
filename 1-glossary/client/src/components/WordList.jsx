@@ -3,11 +3,11 @@ import WordEntry from "./WordEntry.jsx";
 
 var WordList = ({wordList}) => {
 
-  console.log('WORDLIST: ', wordList);
+  // console.log('WORDLIST: ', wordList);
 
   return (
     <div>
-      {wordList.data?.map((wordObj) => (
+      {wordList?.map((wordObj) => (
         <WordEntry wordObj={wordObj} key={wordObj.word} />
       ))}
     </div>
