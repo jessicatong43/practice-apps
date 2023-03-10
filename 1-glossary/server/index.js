@@ -41,6 +41,15 @@ app.get('/glossary', (req, res) => {
   })
 });
 
+app.delete('/glossary', (req, res) => {
+  console.log('DELETE REQBODY: ', req.body);
+  model.deleteOne(req.body)
+  .then((data) => {
+    console.log('DELETE RES: ', data);
+    res.send(data);
+  })
+})
+
 
 app.listen(process.env.PORT);
 console.log(`Listening at http://localhost:${process.env.PORT}`);

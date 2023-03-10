@@ -29,8 +29,10 @@ let editOne = () => {
   // TODO: implement edit to write to db
 }
 
-let deleteOne = () => {
+let deleteOne = (wordObj) => {
   // TODO: implement delete to remove from db
+  console.log('INSIDE DELETE: ', wordObj);
+  return Word.remove(wordObj);
 }
 
 exports.createOne = createOne;

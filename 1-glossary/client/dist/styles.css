@@ -87,7 +87,8 @@ h1 {
   min-height: 500px;
   background-color: rgb(149, 185, 220);
   border: solid 1px rgb(184, 184, 184);
-  border-radius: 30px;
+  border-radius: 20px;
+  padding: 10px 5px;
 }
 
 .wordEntry {

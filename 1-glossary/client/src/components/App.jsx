@@ -36,7 +36,7 @@ var App = () => {
       <AddWord allWords={allWords} setAllWords={setAllWords} setWordList={setWordList}/>
       <Search allWords={allWords} setWordList={setWordList} />
       <div id="wordlist">
-        <WordList wordList={wordList} />
+        <WordList wordList={wordList} setWordList={setWordList} setAllWords={setAllWords} />
       </div>
     </div>
   );
