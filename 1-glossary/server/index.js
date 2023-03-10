@@ -18,15 +18,22 @@ app.post('/glossary', (req, res) => {
 app.get('/glossary', (req, res) => {
   console.log('GET REQ: ', req);
   // pass to db's model for querying db
-  model.getAll((err) => {
-    if (err) {
-      console.log('GET ERROR: ', err);
-    }
-  })
+  model.getAll()
   .then ((allWordsData) => {
     console.log('GET RES: ', allWordsData);
+    let formatted = allWordsData.map(wordObj => {
+      return {
+        word: wordObj.word,
+        definition: wordObj.definition
+      }
+    });
+    console.log('FORMATTED GET DATA: ', formatted);
+    res.json(formatted);
   })
-})
+  .catch((err) => {
+    console.log('GET ERROR: ', err);
+  })
+});
 
 
 app.listen(process.env.PORT);

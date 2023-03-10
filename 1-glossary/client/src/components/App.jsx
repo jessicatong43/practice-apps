@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import WordList from "./WordList.jsx";
 import AddWord from "./AddWord.jsx";
 import Search from "./Search.jsx";
@@ -14,21 +14,21 @@ var initWords = [
 
 var App = () => {
 
-  const [allWords, setAllWords] = useState(initWords);
-  const [wordList, setWordList] = useState(initWords);
+    const [allWords, setAllWords] = useState(initWords);
+    const [wordList, setWordList] = useState(initWords);
 
-  // TODO: implement axios.get to access db words on load/refresh
-  Axios.get('/glossary')
-  .then((allWordsData) => {
-    setAllWords(allWordsData);
-    setWordList(allWordsData);
-  })
-  .catch((err) => {
-    console.log('FINAL ERROR: ', err);
-  })
-  .finally(() => {
-    res.status.send();
-  });
+    useEffect(() => {
+      Axios.get('/glossary')
+      .then((resData) => {
+        console.log('GET SUCCESS: ', resData);
+        setAllWords(resData);
+        setWordList(resData);
+      })
+      .catch((err) => {
+        console.log('FINAL ERROR: ', err);
+      });
+    }, []);
+
 
   return (
     <div id="app">
