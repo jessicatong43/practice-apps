@@ -3,6 +3,7 @@ const express = require("express");
 const path = require("path");
 const sessionHandler = require("./middleware/session-handler");
 const logger = require("./middleware/logger");
+const controller = require('./controller.js');
 
 // Establishes connection to the database on server start
 const db = require("./db");
@@ -18,14 +19,14 @@ app.use(logger);
 
 // Serves up all static and generated assets in ../client/dist.
 app.use(express.static(path.join(__dirname, "../client/dist")));
+app.use(express.json());
 
-/**** 
- * 
- * 
- * Other routes here....
- *
- * 
- */
+// Router
+app.post('/checkout', ((req, res) => {
+  console.log('CONTROLLER POST: ', req.body);
+  controller.post(req.body);
+}));
+
 
 app.listen(process.env.PORT);
 console.log(`Listening at http://localhost:${process.env.PORT}`);
