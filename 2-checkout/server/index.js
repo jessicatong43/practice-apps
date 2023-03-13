@@ -23,9 +23,14 @@ app.use(express.json());
 
 // Router
 app.post('/checkout', ((req, res) => {
-  console.log('CONTROLLER POST: ', req.body);
-  controller.post(req.body);
+  controller.post(req.body)
+  .then((response) => {
+    res.status(201).send();
+  })
 }));
+app.get('/checkout', ((req, res) => {
+  controller.get('SERVER GET REQ: ', req)
+}))
 
 
 app.listen(process.env.PORT);

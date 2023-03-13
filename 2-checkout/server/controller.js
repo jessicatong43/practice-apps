@@ -1,12 +1,17 @@
 const model = require('./model.js');
 
-const post = (reqBody) => {
-  console.log('SERVER POST: ', reqBody);
+const post = (reqBody, res) => {
   let objValues = Object.values(reqBody);
-  console.log('OBJ VALUES: ', objValues);
   // objValues appears in expected order
 
-  model.insert(objValues);
+  return model.insert(objValues)
+  .then((resData) => {
+    console.log('WRITE SUCCESSFUL - CONTROLLER: ', resData);
+    return resData;
+  })
+  .catch((err) => {
+    console.log('CONTROLLER WRITE RES ERROR: ', err)
+  })
 }
 
 exports.post = post;
